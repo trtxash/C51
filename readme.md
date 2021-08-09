@@ -24,3 +24,10 @@ project-new uvision project 后保存
 选legacy device database-at89c51确认  
 flash-configure flash tool-output-create hex file勾上  
 后在工程下添加main.c
+
+### 备注
+
+
+---
+
+创于:2021年8月9日15点29分
