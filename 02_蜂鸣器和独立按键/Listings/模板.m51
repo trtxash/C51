@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/11/2021  19:04:53  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/11/2021  20:11:54  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -26,8 +26,8 @@ LINK MAP OF MODULE:  .\Objects\Ä£°å (MAIN)
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
             CODE    0003H     000CH     UNIT         ?C_C51STARTUP
-            CODE    000FH     000BH     UNIT         ?PR?MAIN?MAIN
-            CODE    001AH     000BH     UNIT         ?PR?_DELAY?MAIN
+            CODE    000FH     000BH     UNIT         ?PR?_DELAY?MAIN
+            CODE    001AH     0009H     UNIT         ?PR?MAIN?MAIN
 
 
 
@@ -55,34 +55,32 @@ SYMBOL TABLE OF MODULE:  .\Objects\Ä£°å (MAIN)
   D:0090H         PUBLIC        P1
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
-  C:001AH         PUBLIC        _delay
+  C:000FH         PUBLIC        _delay
   D:00B8H         PUBLIC        IP
-  B:0090H.5       PUBLIC        beep
-  C:000FH         PUBLIC        main
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/11/2021  19:04:53  PAGE 2
-
-
+  C:001AH         PUBLIC        main
   D:0098H         PUBLIC        SCON
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/11/2021  20:11:54  PAGE 2
+
+
   D:0088H         PUBLIC        TCON
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
-  C:000FH         LINE#         32
-  C:000FH         LINE#         33
-  C:000FH         LINE#         34
-  C:000FH         LINE#         35
-  C:000FH         LINE#         36
-  C:0011H         LINE#         37
-  C:0018H         LINE#         38
+  C:001AH         LINE#         32
+  C:001AH         LINE#         33
+  C:001AH         LINE#         34
+  C:001AH         LINE#         35
+  C:001AH         LINE#         36
+  C:0021H         LINE#         37
   -------         ENDPROC       MAIN
   -------         PROC          _DELAY
   D:0006H         SYMBOL        i
-  C:001AH         LINE#         41
-  C:001AH         LINE#         42
-  C:001AH         LINE#         43
-  C:0024H         LINE#         45
+  C:000FH         LINE#         40
+  C:000FH         LINE#         41
+  C:000FH         LINE#         42
+  C:0019H         LINE#         44
   -------         ENDPROC       _DELAY
   -------         ENDMOD        MAIN
 
-Program Size: data=9.0 xdata=0 code=37
+Program Size: data=9.0 xdata=0 code=35
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
