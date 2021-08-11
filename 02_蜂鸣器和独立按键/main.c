@@ -38,20 +38,70 @@ void delay(u16 i);
 *******************************************************************************/
 void main()
 {
+    u16 i;
     led = 0X00; //开led
+
     while (1)
     {
-        if (key0 || key1 || key2 || key3) // 第一次按下独立按键
+        if ((key0 && key1 && key2 && key3) == 0) // 第一次按下独立按键
         {
-            led = 0XFF;                             // 关led
-            delay(1998);                            //20ms按键消抖
-            while (!(key0 || key1 || key2 || key3)) // 第二次按下独立按键中止循环
+            led = 0XFF;   // 关led
+            delay(19998); //200ms按键消抖
+            while (1)
             {
-                beep = ~beep;
-                delay(46);
+                for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //duo
+                {
+                    beep = ~beep;
+                    delay(46);
+                }
+                if ((key0 && key1 && key2 && key3) == 0) // 第二次按下独立按键中止循环
+                    break;
+
+                for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //lai
+                {
+                    beep = ~beep;
+                    delay(41);
+                }
+                if ((key0 && key1 && key2 && key3) == 0)
+                    break;
+                for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //mi
+                {
+                    beep = ~beep;
+                    delay(36);
+                }
+                if ((key0 && key1 && key2 && key3) == 0)
+                    break;
+                for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //fa
+                {
+                    beep = ~beep;
+                    delay(34);
+                }
+                if ((key0 && key1 && key2 && key3) == 0)
+                    break;
+                for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //so
+                {
+                    beep = ~beep;
+                    delay(30);
+                }
+                if ((key0 && key1 && key2 && key3) == 0)
+                    break;
+                for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //la
+                {
+                    beep = ~beep;
+                    delay(26);
+                }
+                if ((key0 && key1 && key2 && key3) == 0)
+                    break;
+                for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //xi
+                {
+                    beep = ~beep;
+                    delay(23);
+                }
+                if ((key0 && key1 && key2 && key3) == 0)
+                    break;
             }
             led = 0X00;
-            delay(1998);
+            delay(19998);
         }
     }
 }
@@ -62,4 +112,4 @@ void delay(u16 i)
         ;
 }
 
-// 2021年8月10号17点04分
+// 2021年8月11号21点58分
