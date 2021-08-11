@@ -9,7 +9,7 @@
 
 #include "reg52.h"
 
-typedef unsigned int u16;
+typedef unsigned int u16; // 51单片机是八位机，int2个字节
 typedef unsigned char u8;
 
 sbit beep = P1 ^ 5;

@@ -11,7 +11,7 @@
 #include "reg52.h" // reg52.h此文件中定义了单片机的一些特殊功能寄存器
 
 typedef unsigned int u16; //对数据类型进行声明定义
-typedef unsigned char u8;
+typedef unsigned char u8; // 51单片机是八位机，int2个字节
 
 #define led P2 //将P2口定义为led 后面就可以使用led代替P2口
 /*sbit led=P2^0;将单片机的P0.0端口定义为led*/
