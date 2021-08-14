@@ -1,5 +1,5 @@
 /*
-00_蜂鸣器和独立按键
+02_蜂鸣器和独立按键
     功能
         按下任意一个独立按键蜂鸣器发出哆来咪发唆拉稀，再按下停止，不发声时led灯亮
     目的
@@ -10,7 +10,7 @@
 
 #include "reg52.h"
 
-typedef unsigned int u16; // 51单片机是八位机，int2个字节
+typedef unsigned int u16;
 typedef unsigned char u8;
 
 #define led P2
