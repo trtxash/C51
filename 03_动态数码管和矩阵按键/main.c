@@ -27,21 +27,13 @@ u8 code smgduan[17] = {0X00, 0X3F, 0X06, 0X5B, 0X4F, 0X66, 0X6D, 0X7D, 0X07, 0X7
 *******************************************************************************/
 void Delay(u16 i);
 /*******************************************************************************
-* 函 数 名      : Display
-* 函数功能      : 数码管段选显示函数（逐行扫描）
-* 输    入      : unsigned char[0~7]为第0~7位数码管的显示数字,unsigned char延时参数
-* 输    出      : 
-* 注            ：t = 8为144HZ左右
-*******************************************************************************/
-void Display(u8 smgxianshi[], u8 t);
-/*******************************************************************************
-* 函 数 名      : Delay_Display
+* 函 数 名      : Display_Dealy
 * 函数功能      : 显示和延时函数
 * 输    入      : unsigned int,unsigned char[0~7]为第0~7位数码管的显示数字,unsigned char延时参数
 * 输    出      : 无
 * 注            ：S = 0.00001T + 0.00002 = 1E-05x + 2E-05,t = 85为144HZ左右
 *******************************************************************************/
-void Delay_Display(u8 smgxianshi[], u8 t);
+void Display_Dealy(u8 smgxianshi[], u8 t);
 /*******************************************************************************
 * 函 数 名      : KeyDown
 * 函数功能      : 检测有按键按下并读取键值
@@ -79,7 +71,7 @@ void main()
                 smgxianshi[7] = smgduan[KeyDown()];
             }
         }
-        Delay_Display(smgxianshi, 85); // 延时显示函数
+        Display_Dealy(smgxianshi, 85); // 延时显示函数
     }
 }
 
@@ -89,62 +81,7 @@ void Delay(u16 i)
         ;
 }
 
-void Display(u8 smgxianshi[], u8 t)
-{
-    u8 i;
-
-    for (i = 0; i < 8; i++)
-    {
-        P0 = 0X00; //消隐
-        switch (i) //位选，选择点亮的数码管，
-        {
-        case (0):
-            LSA = 1;
-            LSB = 1;
-            LSC = 1;
-            break; //显示第0位
-        case (1):
-            LSA = 0;
-            LSB = 1;
-            LSC = 1;
-            break; //显示第1位
-        case (2):
-            LSA = 1;
-            LSB = 0;
-            LSC = 1;
-            break; //显示第2位
-        case (3):
-            LSA = 0;
-            LSB = 0;
-            LSC = 1;
-            break; //显示第3位
-        case (4):
-            LSA = 1;
-            LSB = 1;
-            LSC = 0;
-            break; //显示第4位
-        case (5):
-            LSA = 0;
-            LSB = 1;
-            LSC = 0;
-            break; //显示第5位
-        case (6):
-            LSA = 1;
-            LSB = 0;
-            LSC = 0;
-            break; //显示第6位
-        case (7):
-            LSA = 0;
-            LSB = 0;
-            LSC = 0;
-            break; //显示第7位
-        }
-        P0 = smgxianshi[i];
-        Delay(t); // 延时控制频率HZ
-    }
-}
-
-void Delay_Display(u8 smgxianshi[], u8 t)
+void Display_Dealy(u8 smgxianshi[], u8 t)
 {
     u8 s = 16;
 
