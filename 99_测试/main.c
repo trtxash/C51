@@ -21,13 +21,13 @@ u8 ledwei[] = {0x7f, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd, 0xfe};  // led位选
 u8 ledduan[] = {0x00, 0x00, 0x3e, 0x41, 0x41, 0x41, 0x3e, 0x00}; // led段选
 
 /*******************************************************************************
-* 函 数 名      : delay
+* 函 数 名      : Delay
 * 函数功能      : 延时函数
 * 输    入      : unsigned int
 * 输    出      : 无
 * 注            ：S = 0.00001T + 0.00002 = 1E-05x + 2E-05
 *******************************************************************************/
-void delay(u16 i);
+void Delay(u16 i);
 
 void Hc595SendByte(u8 dat);
 
@@ -47,13 +47,13 @@ void main()
         {
             P0 = ledwei[i];            //位选
             Hc595SendByte(ledduan[i]); //发送段选数据
-            delay(5000);               //延时
+            Delay(5000);               //延时
             Hc595SendByte(0x00);       //消隐
         }
     }
 }
 
-void delay(u16 i)
+void Delay(u16 i)
 {
     while (i--)
         ;

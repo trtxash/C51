@@ -22,13 +22,13 @@ sbit key2 = P3 ^ 2;
 sbit key3 = P3 ^ 3;
 
 /*******************************************************************************
-* 函 数 名       : delay
+* 函 数 名       : Delay
 * 函数功能		 : 延时函数
 * 输    入       : unsigned int
 * 输    出    	 : 无
 * 注			 ：S = 0.00001T + 0.00002 = 1E-05x + 2E-05
 *******************************************************************************/
-void delay(u16 i);
+void Delay(u16 i);
 
 /*******************************************************************************
 * 函 数 名       : main
@@ -46,13 +46,13 @@ void main()
         if ((key0 && key1 && key2 && key3) == 0) // 第一次按下独立按键
         {
             led = 0XFF;   // 关led
-            delay(19998); //200ms按键消抖
+            Delay(19998); //200ms按键消抖
             while (1)
             {
                 for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //duo
                 {
                     beep = ~beep;
-                    delay(46);
+                    Delay(46);
                 }
                 if ((key0 && key1 && key2 && key3) == 0) // 第二次按下独立按键中止循环
                     break;
@@ -60,53 +60,53 @@ void main()
                 for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //lai
                 {
                     beep = ~beep;
-                    delay(41);
+                    Delay(41);
                 }
                 if ((key0 && key1 && key2 && key3) == 0)
                     break;
                 for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //mi
                 {
                     beep = ~beep;
-                    delay(36);
+                    Delay(36);
                 }
                 if ((key0 && key1 && key2 && key3) == 0)
                     break;
                 for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //fa
                 {
                     beep = ~beep;
-                    delay(34);
+                    Delay(34);
                 }
                 if ((key0 && key1 && key2 && key3) == 0)
                     break;
                 for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //so
                 {
                     beep = ~beep;
-                    delay(30);
+                    Delay(30);
                 }
                 if ((key0 && key1 && key2 && key3) == 0)
                     break;
                 for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //la
                 {
                     beep = ~beep;
-                    delay(26);
+                    Delay(26);
                 }
                 if ((key0 && key1 && key2 && key3) == 0)
                     break;
                 for (i = 3998; key0 && key1 && key2 && key3 && i; i--) //xi
                 {
                     beep = ~beep;
-                    delay(23);
+                    Delay(23);
                 }
                 if ((key0 && key1 && key2 && key3) == 0)
                     break;
             }
             led = 0X00;
-            delay(19998);
+            Delay(19998);
         }
     }
 }
 
-void delay(u16 i)
+void Delay(u16 i)
 {
     while (i--)
         ;

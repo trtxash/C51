@@ -85,7 +85,7 @@ void Display_Dealy(u8 smgxianshi[], u8 t)
 {
     u8 s = 16;
 
-    while (s--)
+    while (s--) // s控制函数运行时长，达到按键消抖的作用
     {
         u8 i;
 

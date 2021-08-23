@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/10/2021  16:47:22  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/24/2021  00:11:36  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -57,42 +57,42 @@ SYMBOL TABLE OF MODULE:  .\Objects\Ä£°å (MAIN)
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IE
-  C:0057H         PUBLIC        _delay
   D:00B8H         PUBLIC        IP
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/10/2021  16:47:22  PAGE 2
-
-
   C:0003H         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2021  00:11:36  PAGE 2
+
+
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
   D:00C8H         PUBLIC        T2CON
+  C:0057H         PUBLIC        _Delay
   D:00D0H         PUBLIC        PSW
   -------         PROC          MAIN
   -------         DO            
   D:0008H         SYMBOL        i
   -------         ENDDO         
-  C:0003H         LINE#         33
   C:0003H         LINE#         34
-  C:0003H         LINE#         37
+  C:0003H         LINE#         35
   C:0003H         LINE#         38
   C:0003H         LINE#         39
-  C:0006H         LINE#         41
-  C:0014H         LINE#         42
+  C:0003H         LINE#         40
+  C:0006H         LINE#         42
   C:0014H         LINE#         43
-  C:0017H         LINE#         44
-  C:001EH         LINE#         45
-  C:0022H         LINE#         46
-  C:0030H         LINE#         47
+  C:0014H         LINE#         44
+  C:0017H         LINE#         45
+  C:001EH         LINE#         46
+  C:0022H         LINE#         47
   C:0030H         LINE#         48
-  C:0040H         LINE#         49
-  C:0047H         LINE#         50
+  C:0030H         LINE#         49
+  C:0040H         LINE#         50
+  C:0047H         LINE#         51
   -------         ENDPROC       MAIN
   -------         PROC          _DELAY
   D:0006H         SYMBOL        i
-  C:0057H         LINE#         54
   C:0057H         LINE#         55
   C:0057H         LINE#         56
-  C:0061H         LINE#         58
+  C:0057H         LINE#         57
+  C:0061H         LINE#         59
   -------         ENDPROC       _DELAY
   -------         ENDMOD        MAIN
 
