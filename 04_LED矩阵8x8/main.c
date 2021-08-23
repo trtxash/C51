@@ -31,7 +31,7 @@ void Delay(u16 i);
 * 输    入      : unsigned char
 * 输    出      : 无
 *******************************************************************************/
-void LedLattice(u8 dat[], u8 t);
+void LedLattice(u8 led[], u16 t);
 
 /*******************************************************************************
 * 函 数 名      : main
@@ -41,12 +41,12 @@ void LedLattice(u8 dat[], u8 t);
 *******************************************************************************/
 void main()
 {
-    u8 ledwei[8] = {0X80, 0X40, 0X20, 0X10, 0X08, 0X04, 0X02, 0X01};  // led位选
-    u8 ledduan[8] = {0X80, 0X40, 0X20, 0X10, 0X08, 0X04, 0X02, 0X01}; // led段选
+    u8 ledweiduan[16] = {0X80, 0X40, 0X20, 0X10, 0X08, 0X04, 0X02, 0X01,
+                         0X00, 0X42, 0XE7, 0X42, 0X00, 0X81, 0X66, 0X3C}; // led位选8个和段选8个
 
     while (1)
     {
-        LedLattice(ledduan, 85);
+        LedLattice(ledweiduan, 85);
     }
 }
 
@@ -56,19 +56,19 @@ void Delay(u16 i)
         ;
 }
 
-void LedLattice(u8 duan[], u8 t)
+void LedLattice(u8 led[], u16 t)
 {
-    u8 i, j, temp;
+    u8 i, j, tmep;
 
     for (i = 0; i < 8; i++) // 位选8次，一遍
     {
-        temp = duan[i];
+        tmep = led[i];
+        P0 = 0XFF; // 消影
 
-        P0 = 0XFF;              // 消影
         for (j = 0; j < 8; j++) // 位选1次
         {
-            HC595_SER = temp >> 7;
-            temp <<= 1;
+            HC595_SER = tmep >> 7;
+            tmep <<= 1;
 
             HC595_SRCLK = 1;
             _nop_();
@@ -79,8 +79,8 @@ void LedLattice(u8 duan[], u8 t)
         _nop_();
         _nop_();
         HC595_RCLK = 0;
-        P0 = duan[j]; // 段选
-        Delay(t);     // 延时控制频率HZ
+        P0 = ~led[i + 8]; // 段选
+        Delay(t);        // 延时控制频率HZ
     }
 }
 
