@@ -1,0 +1,178 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/24/2021  21:32:33  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+S:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\模板 PRINT (.\Listings\模板.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\模板 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000DH     UNIT         _DATA_GROUP_
+            IDATA   0015H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0123H     UNIT         ?C?LIB_CODE
+            CODE    0126H     008AH     UNIT         ?PR?_DISPLAY_DEALY?MAIN
+            CODE    01B0H     0020H     UNIT         ?PR?MAIN?MAIN
+            CODE    01D0H     0019H     UNIT         ?CO?MAIN
+            CODE    01E9H     000CH     UNIT         ?C_C51STARTUP
+            CODE    01F5H     000BH     UNIT         ?PR?_DELAY?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\模板 (MAIN)
+
+
+SEGMENT                           DATA_GROUP 
+  +--> CALLED SEGMENT           START    LENGTH
+-----------------------------------------------
+?C_C51STARTUP                   -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                   0008H    0008H
+  +--> ?CO?MAIN
+  +--> ?PR?_DISPLAY_DEALY?MAIN
+
+?PR?_DISPLAY_DEALY?MAIN         0010H    0005H
+  +--> ?PR?_DELAY?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\模板 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2021  21:32:33  PAGE 2
+
+
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:01B0H         PUBLIC        main
+  C:0126H         PUBLIC        _Display_Dealy
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:01E1H         SYMBOL        _?ix1000
+  B:00A0H.2       PUBLIC        LSA
+  B:00A0H.3       PUBLIC        LSB
+  B:00A0H.4       PUBLIC        LSC
+  D:00C8H         PUBLIC        T2CON
+  C:01F5H         PUBLIC        _Delay
+  C:01D0H         PUBLIC        smgduan
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        i
+  C:01F5H         LINE#         31
+  C:01F5H         LINE#         32
+  C:01F5H         LINE#         33
+  C:01FFH         LINE#         35
+  -------         ENDPROC       _DELAY
+  -------         PROC          _DISPLAY_DEALY
+  D:0010H         SYMBOL        smgxianshi
+  D:0013H         SYMBOL        t
+  -------         DO            
+  D:0014H         SYMBOL        i
+  -------         ENDDO         
+  C:0126H         LINE#         44
+  C:012EH         LINE#         45
+  C:012EH         LINE#         48
+  C:013CH         LINE#         49
+  C:013CH         LINE#         50
+  C:013FH         LINE#         51
+  C:0165H         LINE#         52
+  C:0165H         LINE#         53
+  C:0165H         LINE#         54
+  C:0167H         LINE#         55
+  C:0167H         LINE#         56
+  C:0167H         LINE#         57
+  C:0169H         LINE#         58
+  C:0169H         LINE#         59
+  C:016BH         LINE#         60
+  C:016DH         LINE#         61
+  C:016FH         LINE#         62
+  C:0171H         LINE#         63
+  C:0171H         LINE#         64
+  C:0173H         LINE#         65
+  C:0173H         LINE#         66
+  C:0173H         LINE#         67
+  C:0175H         LINE#         68
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2021  21:32:33  PAGE 3
+
+
+  C:0175H         LINE#         69
+  C:0177H         LINE#         70
+  C:0179H         LINE#         71
+  C:017BH         LINE#         72
+  C:017DH         LINE#         73
+  C:017DH         LINE#         74
+  C:017FH         LINE#         75
+  C:017FH         LINE#         76
+  C:017FH         LINE#         77
+  C:0181H         LINE#         78
+  C:0181H         LINE#         79
+  C:0183H         LINE#         80
+  C:0185H         LINE#         81
+  C:0187H         LINE#         82
+  C:0189H         LINE#         83
+  C:0189H         LINE#         84
+  C:018BH         LINE#         85
+  C:018BH         LINE#         86
+  C:018BH         LINE#         87
+  C:018DH         LINE#         88
+  C:018DH         LINE#         89
+  C:018FH         LINE#         90
+  C:0191H         LINE#         91
+  C:0193H         LINE#         92
+  C:0193H         LINE#         93
+  C:0193H         LINE#         94
+  C:01A4H         LINE#         95
+  C:01ABH         LINE#         96
+  C:01AFH         LINE#         97
+  -------         ENDPROC       _DISPLAY_DEALY
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        smgxianshi
+  -------         ENDDO         
+  C:01B0H         LINE#         105
+  C:01B0H         LINE#         106
+  C:01B0H         LINE#         107
+  C:01C3H         LINE#         108
+  C:01C3H         LINE#         109
+  C:01C3H         LINE#         110
+  C:01CEH         LINE#         111
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?COPY
+  C:00D3H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        ?C?CLDOPTR
+  C:00F9H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+Program Size: data=22.0 xdata=0 code=512
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
