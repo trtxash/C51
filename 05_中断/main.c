@@ -13,7 +13,10 @@
 typedef unsigned int u16;
 typedef unsigned char u8;
 
-sbit key3 = P3 ^ 2;
+sbit key0 = P3 ^ 1;
+sbit key1 = P3 ^ 0;
+sbit key2 = P3 ^ 2;
+sbit key3 = P3 ^ 3;
 sbit HC595_SRCLK = P3 ^ 6; // 74HC595位移寄存器时钟输入
 sbit HC595_RCLK = P3 ^ 5;  // 74HC595储存寄存器时钟输入
 sbit HC595_SER = P3 ^ 4;   // 74HC595串行数据输入
@@ -111,7 +114,7 @@ void Int0() interrupt 0
     u8 i;
 
     Delay(1000);
-    if (key3 == 0)
+    if (key2 == 0)
     {
         for (i = 0; i < 8; i++)
         {

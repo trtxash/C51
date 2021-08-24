@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/24/2021  17:24:56  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/24/2021  18:02:36  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ SEGMENT                          DATA_GROUP
 ?PR?MAIN?MAIN                  -----    -----
   +--> ?PR?INT0INIT?MAIN
   +--> ?PR?_LEDLATTICE?MAIN
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2021  17:24:56  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2021  18:02:36  PAGE 2
 
 
 
@@ -96,21 +96,21 @@ SYMBOL TABLE OF MODULE:  .\Objects\Ä£°å (MAIN)
   C:019DH         PUBLIC        Int0Init
   B:00B0H.4       PUBLIC        HC595_SER
   D:00D0H         PUBLIC        PSW
-  B:00B0H.2       PUBLIC        key3
+  B:00B0H.2       PUBLIC        key2
   -------         PROC          _DELAY
   D:0006H         SYMBOL        i
-  C:0192H         LINE#         34
-  C:0192H         LINE#         35
-  C:0192H         LINE#         36
-  C:019CH         LINE#         38
+  C:0192H         LINE#         37
+  C:0192H         LINE#         38
+  C:0192H         LINE#         39
+  C:019CH         LINE#         41
   -------         ENDPROC       _DELAY
   -------         PROC          INT0INIT
-  C:019DH         LINE#         46
-  C:019DH         LINE#         47
-  C:019DH         LINE#         48
-  C:019FH         LINE#         49
-  C:01A1H         LINE#         50
-  C:01A3H         LINE#         51
+  C:019DH         LINE#         49
+  C:019DH         LINE#         50
+  C:019DH         LINE#         51
+  C:019FH         LINE#         52
+  C:01A1H         LINE#         53
+  C:01A3H         LINE#         54
   -------         ENDPROC       INT0INIT
   -------         PROC          _LEDLATTICE
   D:0018H         SYMBOL        led
@@ -119,57 +119,57 @@ SYMBOL TABLE OF MODULE:  .\Objects\Ä£°å (MAIN)
   D:0005H         SYMBOL        i
   D:0006H         SYMBOL        j
   D:0007H         SYMBOL        tmep
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2021  17:24:56  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/24/2021  18:02:36  PAGE 3
 
 
   -------         ENDDO         
-  C:0092H         LINE#         59
-  C:009CH         LINE#         60
+  C:0092H         LINE#         62
   C:009CH         LINE#         63
-  C:00A8H         LINE#         64
-  C:00A8H         LINE#         65
-  C:00B7H         LINE#         66
-  C:00BAH         LINE#         68
-  C:00C6H         LINE#         69
-  C:00C6H         LINE#         70
-  C:00D1H         LINE#         71
-  C:00D5H         LINE#         73
-  C:00D7H         LINE#         74
-  C:00D8H         LINE#         75
-  C:00D9H         LINE#         76
-  C:00DBH         LINE#         77
-  C:00DEH         LINE#         78
-  C:00E0H         LINE#         79
-  C:00E1H         LINE#         80
-  C:00E2H         LINE#         81
-  C:00E4H         LINE#         82
-  C:00F9H         LINE#         83
-  C:0100H         LINE#         84
-  C:0103H         LINE#         85
+  C:009CH         LINE#         66
+  C:00A8H         LINE#         67
+  C:00A8H         LINE#         68
+  C:00B7H         LINE#         69
+  C:00BAH         LINE#         71
+  C:00C6H         LINE#         72
+  C:00C6H         LINE#         73
+  C:00D1H         LINE#         74
+  C:00D5H         LINE#         76
+  C:00D7H         LINE#         77
+  C:00D8H         LINE#         78
+  C:00D9H         LINE#         79
+  C:00DBH         LINE#         80
+  C:00DEH         LINE#         81
+  C:00E0H         LINE#         82
+  C:00E1H         LINE#         83
+  C:00E2H         LINE#         84
+  C:00E4H         LINE#         85
+  C:00F9H         LINE#         86
+  C:0100H         LINE#         87
+  C:0103H         LINE#         88
   -------         ENDPROC       _LEDLATTICE
   -------         PROC          MAIN
-  C:0180H         LINE#         93
-  C:0180H         LINE#         94
-  C:0180H         LINE#         95
-  C:0183H         LINE#         97
-  C:0183H         LINE#         98
-  C:0183H         LINE#         99
-  C:0190H         LINE#         100
+  C:0180H         LINE#         96
+  C:0180H         LINE#         97
+  C:0180H         LINE#         98
+  C:0183H         LINE#         100
+  C:0183H         LINE#         101
+  C:0183H         LINE#         102
+  C:0190H         LINE#         103
   -------         ENDPROC       MAIN
   -------         PROC          INT0
   -------         DO            
   D:0007H         SYMBOL        i
   -------         ENDDO         
-  C:0104H         LINE#         109
-  C:0113H         LINE#         113
-  C:011AH         LINE#         114
-  C:011DH         LINE#         115
-  C:011DH         LINE#         116
-  C:0129H         LINE#         117
-  C:0129H         LINE#         118
-  C:0130H         LINE#         119
-  C:0133H         LINE#         120
-  C:0133H         LINE#         121
+  C:0104H         LINE#         112
+  C:0113H         LINE#         116
+  C:011AH         LINE#         117
+  C:011DH         LINE#         118
+  C:011DH         LINE#         119
+  C:0129H         LINE#         120
+  C:0129H         LINE#         121
+  C:0130H         LINE#         122
+  C:0133H         LINE#         123
+  C:0133H         LINE#         124
   -------         ENDPROC       INT0
   -------         ENDMOD        MAIN
 
