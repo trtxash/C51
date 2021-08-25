@@ -21,9 +21,9 @@ sbit LSC = P2 ^ 4;
 u8 code smgduan[17] = {0X00, 0X3F, 0X06, 0X5B, 0X4F, 0X66, 0X6D, 0X7D, 0X07, 0X7F, 0X6F, 0X77, 0X7C, 0X39, 0X5E, 0X79, 0X71}; //显示0~F的值
 
 ////////////////////////////////////////////////////////////////////////////////
-void Delay(u16 i);
-void Display_Dealy(u8 smgxianshi[], u8 t);
-u8 KeyDown(void);
+void Delay(u16 i);                         // 延时函数
+void Display_Dealy(u8 smgxianshi[], u8 t); // 显示和延时函数
+u8 KeyDown(void);                          // 检测有按键按下并读取键值
 
 ////////////////////////////////////////////////////////////////////////////////
 
