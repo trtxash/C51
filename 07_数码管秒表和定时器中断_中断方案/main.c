@@ -25,7 +25,6 @@ u16 sss = 0, ssec = 0, sec = 0, min = 0, h = 0;                                 
 ////////////////////////////////////////////////////////////////////////////////
 void Timer0Init(u8 x);              // 定时器0初始化函数
 void Delay(u16 i);                  // 延时函数
-void DataProcess(void);             // 数据处理函数
 void DisplayDelay(u8 smgxianshi[]); // 显示和延时函数
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +41,15 @@ void main(void)
 
     while (1)
     {
-        DataProcess(); // 用到了定时器0
+        smg[7] = smgduan[(h / 10) % 10];
+        smg[6] = smgduan[h % 10], smg[6] |= 0X80; // 加上dp
+        smg[5] = smgduan[(min / 10) % 10];
+        smg[4] = smgduan[min % 10], smg[4] |= 0X80;
+        smg[3] = smgduan[(sec / 10) % 10];
+        smg[2] = smgduan[sec % 10], smg[2] |= 0X80;
+        smg[1] = smgduan[(ssec / 100) % 10];
+        smg[0] = smgduan[(ssec / 10) % 10]; // 10ms位
+
         DisplayDelay(smg);
     }
 }
@@ -75,24 +82,6 @@ void Delay(u16 i)
     while (i--)
     {
     }
-}
-
-/*******************************************************************************
-* 函 数 名      : DataProcess
-* 函数功能      : 数据处理函数
-* 输    入      : 
-* 输    出      : 
-*******************************************************************************/
-void DataProcess(void)
-{
-    smg[7] = smgduan[(h / 10) % 10];
-    smg[6] = smgduan[h % 10], smg[6] |= 0X80; // 加上dp
-    smg[5] = smgduan[(min / 10) % 10];
-    smg[4] = smgduan[min % 10], smg[4] |= 0X80;
-    smg[3] = smgduan[(sec / 10) % 10];
-    smg[2] = smgduan[sec % 10], smg[2] |= 0X80;
-    smg[1] = smgduan[(ssec / 100) % 10];
-    smg[0] = smgduan[(ssec / 10) % 10]; // 10ms位
 }
 
 /*******************************************************************************

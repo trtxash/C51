@@ -22,15 +22,14 @@ sbit LSC = P2 ^ 4;
 ////////////////////////////////////////////////////////////////////////////////
 u8 code smgduan[10] = {0X3F, 0X06, 0X5B, 0X4F, 0X66, 0X6D, 0X7D, 0X07, 0X7F, 0X6F}; // 显示0~9的值
 u8 smg[8] = {0X00, 0X00, 0X00, 0X00, 0X00, 0X00, 0X00, 0X00};                       // 记录八段数码管的显示数据
-u16 sss = 0, ssec = 0, sec = 0, min = 0, h = 0;                                     // 次数，毫秒，秒，分 ,小时
-u8 TransmitDate, ReceiveDate, TRDate;                                               // 发送数据和接受数据
+u8 sss = 0, sec = 0, min = 0, h = 0;                                                // 次数,秒，分 ,小时
+u16 ssec = 0;                                                                       // 毫秒
+u8 TransmitDate[8], ReceiveDate[8], Tsec = 0, Rsec = 0;                             // 发送数据,接受数据,发送次数，接收次数
 
 ////////////////////////////////////////////////////////////////////////////////
 void Timer0Init(u8 x);              // 定时器0初始化函数
 void UsartInit(u8 x);               // 串口通信与定时器1初始化函数
 void Delay(u16 i);                  // 延时函数
-void DisplayDate(void);             // 数据处理函数
-void UsartDate();                   // 串口通信数据处理
 void DisplayDelay(u8 smgxianshi[]); // 显示和延时函数
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -43,13 +42,73 @@ void DisplayDelay(u8 smgxianshi[]); // 显示和延时函数
 *******************************************************************************/
 void main(void)
 {
+    u8 temp0 = 1, temp1 = 1;
+
     Timer0Init(1); // 初始化计时器0
     UsartInit(1);  // 初始化串口通信与定时器1
 
     while (1)
     {
-        UsartDate();
-        DisplayDate(); // 用到了定时器0
+        if (sec != temp0 && Tsec != temp1) // 判断秒数和发送次数是否发生改变
+        {
+            temp1 = Tsec;
+
+            switch (Tsec)
+            {
+            case 1:
+                SBUF = 0X07;
+                //SBUF = (h / 10) % 10 || 0X30;
+                break;
+            case 2:
+                SBUF = 0X02;
+                //SBUF = h % 10 || 0X30;
+                break;
+            case 3:
+                SBUF = 0X2E;
+                break;
+            case 4:
+                SBUF = 0X03;
+                //SBUF = (min / 10) % 10 || 0X30;
+                break;
+            case 5:
+                SBUF = 0X04;
+                //SBUF = min % 10 || 0X30;
+                break;
+            case 6:
+                SBUF = 0X2E;
+                break;
+            case 7:
+                SBUF = 0X05;
+                //SBUF = (sec / 10) % 10 || 0X30;
+                break;
+            case 8:
+                SBUF = 0X06;
+                //SBUF = sec % 10 || 0X30;
+                break;
+            case 9:
+                SBUF = 0X20;
+                Tsec = 1;
+                temp0 = sec;
+                break;
+            }
+        }
+        if (Rsec == 8) // 处理接收到的八个字节
+        {
+            h = (ReceiveDate[0] % 16) * 10 + ReceiveDate[1] % 16;
+            min = (ReceiveDate[2] % 16) * 10 + ReceiveDate[3] % 16;
+            sec = (ReceiveDate[4] % 16) * 10 + ReceiveDate[5] % 16;
+            ssec = ((ReceiveDate[6] % 16) * 10 + ReceiveDate[7] % 16) * 10;
+            Rsec = 0;
+        }
+
+        smg[7] = smgduan[(h / 10) % 10];          // 时间数据处理
+        smg[6] = smgduan[h % 10], smg[6] |= 0X80; // 加上dp
+        smg[5] = smgduan[(min / 10) % 10];
+        smg[4] = smgduan[min % 10], smg[4] |= 0X80;
+        smg[3] = smgduan[(sec / 10) % 10];
+        smg[2] = smgduan[sec % 10], smg[2] |= 0X80;
+        smg[1] = smgduan[(ssec / 100) % 10];
+        smg[0] = smgduan[(ssec / 10) % 10]; // 10ms位
         DisplayDelay(smg);
     }
 }
@@ -100,49 +159,6 @@ void Delay(u16 i)
 {
     while (i--)
     {
-    }
-}
-
-/*******************************************************************************
-* 函 数 名      : DisplayDate
-* 函数功能      : 数据处理函数
-* 输    入      : 
-* 输    出      : 
-*******************************************************************************/
-void DisplayDate(void)
-{
-    smg[7] = smgduan[(h / 10) % 10];          // 时间数据处理
-    smg[6] = smgduan[h % 10], smg[6] |= 0X80; // 加上dp
-    smg[5] = smgduan[(min / 10) % 10];
-    smg[4] = smgduan[min % 10], smg[4] |= 0X80;
-    smg[3] = smgduan[(sec / 10) % 10];
-    smg[2] = smgduan[sec % 10], smg[2] |= 0X80;
-    smg[1] = smgduan[(ssec / 100) % 10];
-    smg[0] = smgduan[(ssec / 10) % 10]; // 10ms位
-}
-
-/*******************************************************************************
-* 函 数 名      : UsartDate
-* 函数功能      : 串口通信数据处理函数
-* 输    入      : 
-* 输    出      : 
-*******************************************************************************/
-void UsartDate(void)
-{
-    u8 temp[][];
-
-    if (TRDate == 0X01)
-    {
-        temp = ReceiveDate;
-        sss = 0;
-        ssec = temp % 100;
-        sec = (temp / 100) % 100;
-        min = (temp / 100) % 100;
-        h = (temp / 100) % 100;
-    }
-    else if (TRDate == 0X02)
-    {
-        switch ()
     }
 }
 
@@ -253,22 +269,18 @@ void Timer0(void) interrupt 1
 * 输    入      : 
 * 输    出      : 
 *******************************************************************************/
-void Usart() interrupt 4
+void Usart(void) interrupt 4
 {
     if (RI == 1) // 判断是否为接受数据触发中断
     {
-        ReceiveDate = SUBF; // 接受数据
+        ReceiveDate[Rsec] = SBUF; // 接受数据
+        Rsec++;                   // 接受了数据+1
         RI = 0;
-        TRDate |= 0X01; // 判断是否接受了数据
     }
     if (TI == 1) // 判断是否为发送数据触发中断
     {
-        SBUF = TransmitDate; // 发送数据
-        while (!TI)          // 检查是否接受完一个字节
-        {
-        }
-        TI = 0;
-        TRDate |= 0X02; // 判断是否发送了数据
+        Tsec++; // 发送了数据+1
+        TI = 0; // 清除发送完成标志位
     }
 }
 
