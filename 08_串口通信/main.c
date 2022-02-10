@@ -55,37 +55,36 @@ void main(void)
 
             switch (Tsec)
             {
+            case 0:
+                SBUF = (h / 10) % 10 || 0X30;
+                break;
             case 1:
-                SBUF = 0X07;
-                //SBUF = (h / 10) % 10 || 0X30;
+                SBUF = 0X02;
+                SBUF = h % 10 || 0X30;
                 break;
             case 2:
-                SBUF = 0X02;
-                //SBUF = h % 10 || 0X30;
+                SBUF = 0X2E;
                 break;
             case 3:
-                SBUF = 0X2E;
+                SBUF = 0X03;
+                SBUF = (min / 10) % 10 || 0X30;
                 break;
             case 4:
-                SBUF = 0X03;
-                //SBUF = (min / 10) % 10 || 0X30;
+                SBUF = 0X04;
+                SBUF = min % 10 || 0X30;
                 break;
             case 5:
-                SBUF = 0X04;
-                //SBUF = min % 10 || 0X30;
-                break;
-            case 6:
                 SBUF = 0X2E;
                 break;
-            case 7:
+            case 6:
                 SBUF = 0X05;
-                //SBUF = (sec / 10) % 10 || 0X30;
+                SBUF = (sec / 10) % 10 || 0X30;
+                break;
+            case 7:
+                SBUF = 0X06;
+                SBUF = sec % 10 || 0X30;
                 break;
             case 8:
-                SBUF = 0X06;
-                //SBUF = sec % 10 || 0X30;
-                break;
-            case 9:
                 SBUF = 0X20;
                 Tsec = 1;
                 temp0 = sec;
