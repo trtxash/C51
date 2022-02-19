@@ -27,6 +27,7 @@ flash-configure flash tool-output-create hex file勾上
 
 ### 备注
 
++ 我使用的是[普中-单核-A2开发板](http://www.prechin.cn/a/jiaoxue/51/91.html)
 
 ---
 
