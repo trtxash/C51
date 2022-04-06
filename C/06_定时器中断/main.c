@@ -68,6 +68,11 @@ void Timer0Init(void)
 *******************************************************************************/
 void Timer0(void) interrupt 1
 {
+    // 外部中断0    EX0 interrupt 0
+    // 定时器0      ET0 interrupt 1
+    // 外部中断1    EX1 interrupt 2
+    // 定时器1      ET1 interrupt 3
+    // 串口中断         interrupt 4
     TL0 = 0X00; // 复位
     TH0 = 0XDC;
     ssec += 10; // 记录+10ms
