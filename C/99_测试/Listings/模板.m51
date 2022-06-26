@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/08/2021  23:11:50  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/08/2022  22:21:59  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -21,28 +21,28 @@ LINK MAP OF MODULE:  .\Objects\Ä£°å (MAIN)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0002H     UNIT         _DATA_GROUP_
-            IDATA   000AH     0001H     UNIT         ?STACK
+            DATA    0008H     0001H     UNIT         ?DT?MAIN
+            IDATA   0009H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0229H     UNIT         ?PR?MAIN?MAIN
-            CODE    022CH     000CH     UNIT         ?C_C51STARTUP
-            CODE    0238H     000BH     UNIT         ?PR?_DELAY?MAIN
+            CODE    0003H     0017H     UNIT         ?PR?TIMER1?MAIN
+                    001AH     0001H                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+            CODE    001EH     001AH     UNIT         ?PR?MAIN?MAIN
+            CODE    0038H     0010H     UNIT         ?PR?TIMER1INIT?MAIN
+            CODE    0048H     000CH     UNIT         ?C_C51STARTUP
 
 
 
 OVERLAY MAP OF MODULE:   .\Objects\Ä£°å (MAIN)
 
 
-SEGMENT                          DATA_GROUP 
-  +--> CALLED SEGMENT          START    LENGTH
-----------------------------------------------
-?C_C51STARTUP                  -----    -----
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
   +--> ?PR?MAIN?MAIN
-
-?PR?MAIN?MAIN                  0008H    0002H
-  +--> ?PR?_DELAY?MAIN
 
 
 
@@ -53,108 +53,82 @@ SYMBOL TABLE OF MODULE:  .\Objects\Ä£°å (MAIN)
 
   -------         MODULE        MAIN
   C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
   D:00A8H         PUBLIC        IE
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/08/2022  22:21:59  PAGE 2
+
+
   D:00B8H         PUBLIC        IP
   B:00A0H.0       PUBLIC        beep
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/08/2021  23:11:50  PAGE 2
-
-
-  C:0003H         PUBLIC        main
+  C:001EH         PUBLIC        main
   D:0098H         PUBLIC        SCON
+  C:0003H         PUBLIC        Timer1
+  D:0089H         PUBLIC        TMOD
   D:0088H         PUBLIC        TCON
+  D:0008H         PUBLIC        test
+  B:00A8H.3       PUBLIC        ET1
+  C:0038H         PUBLIC        Timer1Init
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
   D:00C8H         PUBLIC        T2CON
-  C:0238H         PUBLIC        _Delay
-  B:00B0H.1       PUBLIC        key0
+  B:0080H.0       PUBLIC        text1
+  B:0080H.1       PUBLIC        text2
   D:00D0H         PUBLIC        PSW
-  B:00B0H.0       PUBLIC        key1
-  B:00B0H.2       PUBLIC        key2
-  B:00B0H.3       PUBLIC        key3
+  -------         PROC          TIMER1INIT
+  C:0038H         LINE#         30
+  C:0038H         LINE#         31
+  C:0038H         LINE#         32
+  C:003BH         LINE#         33
+  C:003EH         LINE#         34
+  C:0041H         LINE#         35
+  C:0043H         LINE#         36
+  C:0045H         LINE#         37
+  C:0047H         LINE#         38
+  -------         ENDPROC       TIMER1INIT
   -------         PROC          MAIN
-  -------         DO            
-  D:0008H         SYMBOL        i
-  -------         ENDDO         
-  C:0003H         LINE#         36
-  C:0003H         LINE#         37
-  C:0003H         LINE#         39
-  C:0006H         LINE#         41
-  C:0006H         LINE#         42
-  C:0006H         LINE#         43
-  C:0020H         LINE#         44
-  C:0020H         LINE#         45
-  C:0023H         LINE#         46
-  C:002AH         LINE#         47
-  C:002AH         LINE#         48
-  C:002AH         LINE#         49
-  C:0042H         LINE#         50
-  C:0042H         LINE#         51
-  C:0044H         LINE#         52
-  C:004BH         LINE#         53
-  C:0055H         LINE#         54
-  C:0072H         LINE#         55
-  C:0072H         LINE#         57
-  C:008AH         LINE#         58
-  C:008AH         LINE#         59
-  C:008CH         LINE#         60
-  C:0093H         LINE#         61
-  C:009DH         LINE#         62
-  C:00BAH         LINE#         63
-  C:00BAH         LINE#         64
-  C:00D2H         LINE#         65
-  C:00D2H         LINE#         66
-  C:00D4H         LINE#         67
-  C:00DBH         LINE#         68
-  C:00E5H         LINE#         69
-  C:0102H         LINE#         70
-  C:0102H         LINE#         71
-  C:011AH         LINE#         72
-  C:011AH         LINE#         73
-  C:011CH         LINE#         74
-  C:0123H         LINE#         75
-  C:012DH         LINE#         76
-  C:014AH         LINE#         77
-  C:014AH         LINE#         78
-  C:0162H         LINE#         79
-  C:0162H         LINE#         80
-  C:0164H         LINE#         81
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/08/2021  23:11:50  PAGE 3
-
-
-  C:016BH         LINE#         82
-  C:0175H         LINE#         83
-  C:0192H         LINE#         84
-  C:0192H         LINE#         85
-  C:01AAH         LINE#         86
-  C:01AAH         LINE#         87
-  C:01ACH         LINE#         88
-  C:01B3H         LINE#         89
-  C:01BDH         LINE#         90
-  C:01D7H         LINE#         91
-  C:01D7H         LINE#         92
-  C:01EFH         LINE#         93
-  C:01EFH         LINE#         94
-  C:01F1H         LINE#         95
-  C:01F8H         LINE#         96
-  C:0202H         LINE#         97
-  C:021FH         LINE#         98
-  C:021FH         LINE#         99
-  C:021FH         LINE#         100
-  C:0222H         LINE#         101
-  C:0229H         LINE#         102
-  C:0229H         LINE#         103
+  C:001EH         LINE#         46
+  C:001EH         LINE#         47
+  C:001EH         LINE#         49
+  C:0021H         LINE#         51
+  C:0021H         LINE#         52
+  C:0021H         LINE#         53
+  C:0024H         LINE#         54
+  C:0024H         LINE#         55
+  C:0027H         LINE#         56
+  C:0027H         LINE#         57
+  C:002AH         LINE#         58
+  C:002AH         LINE#         59
+  C:002DH         LINE#         60
+  C:002DH         LINE#         61
+  C:0033H         LINE#         62
+  C:0033H         LINE#         63
+  C:0036H         LINE#         64
+  C:0036H         LINE#         65
   -------         ENDPROC       MAIN
-  -------         PROC          _DELAY
-  D:0006H         SYMBOL        i
-  C:0238H         LINE#         113
-  C:0238H         LINE#         114
-  C:0238H         LINE#         115
-  C:0242H         LINE#         116
-  C:0242H         LINE#         117
-  C:0242H         LINE#         118
-  -------         ENDPROC       _DELAY
+  -------         PROC          TIMER1
+  C:0003H         LINE#         74
+  C:0005H         LINE#         76
+  C:0008H         LINE#         77
+  C:000BH         LINE#         78
+  C:000FH         LINE#         79
+  C:000FH         LINE#         80
+  C:0012H         LINE#         81
+  C:0014H         LINE#         82
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/08/2022  22:21:59  PAGE 3
+
+
+  C:0017H         LINE#         83
+  C:0017H         LINE#         84
+  -------         ENDPROC       TIMER1
   -------         ENDMOD        MAIN
 
-Program Size: data=11.0 xdata=0 code=579
-LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER1INIT?MAIN
+
+Program Size: data=10.0 xdata=0 code=83
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,9 +1,13 @@
 		ORG		0000H;下面那条指令放到0000H
-		AJMP	START
+		LJMP	START
+		ORG		0003H;下面那条指令放到0003H
+		LJMP	interrupt_0
 		ORG		000BH;下面那条指令放到000BH
-		AJMP	interrupt_1
+		LJMP	interrupt_1
+		ORG		0013H;下面那条指令放到0013H
+		LJMP	interrupt_2
 		ORG		001BH;下面那条指令放到001BH
-		AJMP	interrupt_3
+		LJMP	interrupt_3
 		ORG 	0100H;下面那条指令放到0100H
 START:
 ;参数定义，初始化
@@ -11,7 +15,7 @@ START:
 		N250MS 		DATA 	31H;定义叫做N250MS的变量，用来延时250ms，放在31H
 		BianHua 	DATA 	32H;定义叫做BianHua的变量，用来设置LED变化次数，放在32H
 		KEY 		DATA	33H;定义叫做KEY的变量，存放行列键盘扫描值，放在33H
-		LED_Cyclic 	DATA	34H;定义叫做KEY的变量，记录LED循环次数，放在34H
+		LED_Cyclic 	DATA	34H;定义叫做LED_Cyclic的变量，记录LED循环次数，放在34H
 		MOV 	R0,#0;A保护位
 		MOV 	R1,#0;定时器标志记录位，只给定时器0用
 		MOV 	R2,#0;LED查表偏移位
@@ -23,6 +27,8 @@ MAIN:
 ;主函数
 		ACALL	Timer0Init;定时器0初始化
 		ACALL	Timer1Init;定时器1初始化
+		ACALL	Int0Init;外部中断0初始化
+		ACALL	Int1Init;外部中断1初始化
 MAIN_LOOP:
 		MOV		BianHua,#8;变量BianHua赋值，n种变化
 		MOV		N250MS,#1;延时250ms
@@ -109,71 +115,79 @@ Key_Data:
 		MOV		A,KEY
 	
 		CJNE	A,#0,Key_Data_0
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_0:	
 		CJNE	A,#1,Key_Data_1
 		MOV		R2,#8
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_1:		
 		CJNE	A,#2,Key_Data_2
 		MOV		R2,#16
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_2:		
 		CJNE	A,#3,Key_Data_3
 		MOV		R2,#24
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_3:		
 		CJNE	A,#4,Key_Data_4
 		MOV		R2,#32
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_4:		
 		CJNE	A,#5,Key_Data_5
 		MOV		R2,#40
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_5:		
 		CJNE	A,#6,Key_Data_6
 		MOV		R2,#48
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_6:		
 		CJNE	A,#7,Key_Data_7
 		MOV		R2,#56
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_7:		
 		CJNE	A,#8,Key_Data_8
 		MOV		R2,#64
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_8:		
 		CJNE	A,#9,Key_Data_9
 		MOV		R2,#72
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_9:		
 		CJNE	A,#10,Key_Data_10
 		MOV		R2,#80
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_10:		
 		CJNE	A,#11,Key_Data_11
 		MOV		R2,#88
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_11:		
 		CJNE	A,#12,Key_Data_12
 		MOV		R2,#96
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_12:		
 		CJNE	A,#13,Key_Data_13
 		MOV		R2,#104
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_13:		
 		CJNE	A,#14,Key_Data_14
 		MOV		R2,#112
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_14:		
 		CJNE	A,#15,Key_Data_15
 		MOV		R2,#120
-		AJMP	Key_Data_END
+		AJMP	Key_Data_Judge
 Key_Data_15:		
-		CJNE	A,#16,Key_Data_END
+		CJNE	A,#16,Key_Data_Judge
 		MOV		R2,#128
-Key_Data_END:	
+Key_Data_Judge:	
+;R2大于128，超出数值范围，关联查表数据
+		MOV		A,R2
+		CLR		C
+		SUBB	A,#129
+		JC	Key_Data_END
+		MOV		R2,#0;超出清零
+		
+Key_Data_END:
 		RET
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -197,7 +211,16 @@ DELAY_N250MS:
 		DJNZ	N250MS,DELAY_N250MS
 		
 		RET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Int0Init:
+;外部中断0初始化
+		SETB	IT0;设置外部中断触发模式为边缘触发
+		SETB	EX0;打开外部中断0
+		SETB	EA;总中断打开
 		
+		RET
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 Timer0Init:
@@ -208,6 +231,15 @@ Timer0Init:
 		SETB 	ET0;定时器0中断打开
 		SETB 	EA;总中断打开
 		SETB 	TR0;控制定时器0
+		
+		RET
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+Int1Init:
+;外部中断1初始化
+		SETB	IT1;设置外部中断触发模式为边缘触发
+		SETB	EX1;打开外部中断1
+		SETB	EA;总中断打开
 		
 		RET
 
@@ -223,14 +255,40 @@ Timer1Init:
 		SETB 	TR1;控制定时器1
 		
 		RET
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	
+interrupt_0:
+;外部中断0
+		MOV		A,R2;触发一次，偏移量加8
+		ADD		A,#8
+		MOV		R2,A
+		MOV		LED_Cyclic,#0
 		
+		RETI
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	
 interrupt_1:
 ;定时器0中断
 		INC R1;R1加一
 		RETI
-		
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	
+interrupt_2:
+;外部中断1
+		MOV		A,R2;触发一次，偏移量减8
+		CLR		C;进位位清零，用来判断偏移量是否小于8
+		SUBB	A,#8
+		JNC		interrupt_2_temp;进位位为零，则跳转，否则R2清零
+		MOV		A,#0
+interrupt_2_temp:			
+		MOV		R2,A
+		MOV		LED_Cyclic,#0
+
+		RETI
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 interrupt_3:

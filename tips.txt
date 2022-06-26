@@ -1,0 +1,57 @@
+MOV SP,#80H ;初始堆栈指针，（SP）=80H
+LCALL XXXX;调用XXXX处的子程序，下一条指令PC值压栈，（SP）=（SP）+2
+NOP;子程序返回时，RET指令从堆栈中弹出PC值，所以会返回到这里，（SP）=（SP）-2
+PUSH ACC;累加器A的内容压栈保存，（SP）=（SP）+1
+POP B;堆栈内保存的累加器A的内容弹出到B寄存器中，（SP）=（SP）-1
+
+实测：
+;       SP➡0x07    0
+
+		ORG		0000H
+		AJMP	MAIN
+		ORG		0200H
+MAIN:
+		MOV		A,#1
+		PUSH	ACC;PUSH堆栈，先SP+1，后写入数据
+;   SP➡0x08    1
+;       0x07    0
+
+		INC		A
+		PUSH	ACC
+;   SP➡0x09    2
+;       0x08    1
+;       0x07    0
+
+		POP		ACC;POP出栈，先写入数据，后SP-1
+;       0x09    2
+;   SP➡0x08    1
+;       0x07    0
+
+		ACALL	DELAY;ACALL先SP+1，后写入PC指针数据，再SP+1，因为压栈，数据会上移，使子程序能栈操作
+;   SP➡0x0a    02
+;       0x09    0B
+;       0x08    1
+;       0x07    0
+		
+		AJMP	MAIN
+DELAY:	
+		INC		A
+		RETI;RETI先SP-1，后写入PC指针数据，再SP-1
+;       0x0a    02
+;       0x09    0B
+;   SP➡0x08    1
+;       0x07    0
+		
+		END
+
+
+
+
+  
+
+
+
+
+
+
+
