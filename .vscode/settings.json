@@ -2,6 +2,7 @@
     "files.associations": {
         "stdio.h": "c",
         "main.h": "c",
-        "REGX52.H": "cpp"
+        "REGX52.H": "cpp",
+        "lcd.h": "c"
     }
 }
