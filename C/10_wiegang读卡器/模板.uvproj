@@ -381,11 +381,6 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
-            <File>
-              <FileName>Wiegand.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Wiegand.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>

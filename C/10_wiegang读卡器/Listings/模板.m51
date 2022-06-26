@@ -1,0 +1,185 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/26/2022  11:36:12  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+S:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\模板 PRINT (.\Listings\模板.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTOPTR)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C?ILDOPTR)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C?IILDOPTR)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C?ISTOPTR)
+  S:\KEIL_V5\C51\LIB\C51S.LIB (?C?IILDX)
+
+
+LINK MAP OF MODULE:  .\Objects\模板 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            REG     0008H     0008H     ABSOLUTE     "REG BANK 1"
+            REG     0010H     0008H     ABSOLUTE     "REG BANK 2"
+            DATA    0018H     0003H     UNIT         ?DT?MAIN
+            IDATA   001BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     000CH     UNIT         ?C_C51STARTUP
+                    0012H     0001H                  *** GAP ***
+            CODE    0013H     0003H     ABSOLUTE     
+            CODE    0016H     013FH     UNIT         ?C?LIB_CODE
+            CODE    0155H     0054H     UNIT         ?PR?WIEGAND_DATA0?MAIN
+            CODE    01A9H     004DH     UNIT         ?PR?WIEGAND_DATA1?MAIN
+            CODE    01F6H     0014H     UNIT         ?PR?MAIN?MAIN
+            CODE    020AH     0011H     UNIT         ?PR?_UDELAY?MAIN
+            CODE    021BH     000BH     UNIT         ?PR?INITIAL?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\模板 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?PR?WIEGAND_DATA0?MAIN
+  +--> ?PR?_UDELAY?MAIN
+
+*** NEW ROOT ***************************************************
+
+?PR?WIEGAND_DATA1?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/26/2022  11:36:12  PAGE 2
+
+
+  +--> ?PR?_UDELAY?MAIN
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?INITIAL?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\模板 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:020AH         PUBLIC        _udelay
+  C:01F6H         PUBLIC        main
+  B:00B0H.2       PUBLIC        DATA0
+  B:00B0H.3       PUBLIC        DATA1
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.2       PUBLIC        EX1
+  B:0088H.2       PUBLIC        IT1
+  C:0155H         PUBLIC        Wiegand_Data0
+  C:01A9H         PUBLIC        Wiegand_Data1
+  D:0018H         SYMBOL        rf_card
+  C:021BH         PUBLIC        initial
+  -------         PROC          INITIAL
+  C:021BH         LINE#         38
+  C:021BH         LINE#         39
+  C:021BH         LINE#         40
+  C:021DH         LINE#         41
+  C:021FH         LINE#         42
+  C:0221H         LINE#         43
+  C:0223H         LINE#         44
+  C:0225H         LINE#         45
+  -------         ENDPROC       INITIAL
+  -------         PROC          _UDELAY
+  D:0006H         SYMBOL        num
+  C:020AH         LINE#         53
+  C:020AH         LINE#         54
+  C:020AH         LINE#         55
+  C:0211H         LINE#         56
+  C:021AH         LINE#         58
+  -------         ENDPROC       _UDELAY
+  -------         PROC          MAIN
+  C:01F6H         LINE#         66
+  C:01F6H         LINE#         67
+  C:01F6H         LINE#         68
+  C:01F6H         LINE#         69
+  C:01F6H         LINE#         70
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/26/2022  11:36:12  PAGE 3
+
+
+  C:01F9H         LINE#         71
+  C:0208H         LINE#         73
+  -------         ENDPROC       MAIN
+  -------         PROC          WIEGAND_DATA0
+  C:0155H         LINE#         82
+  C:0162H         LINE#         84
+  C:0164H         LINE#         85
+  C:016BH         LINE#         86
+  C:016EH         LINE#         87
+  C:016EH         LINE#         88
+  C:0184H         LINE#         89
+  C:018EH         LINE#         90
+  C:018EH         LINE#         91
+  C:0195H         LINE#         92
+  C:0197H         LINE#         93
+  C:019EH         LINE#         94
+  -------         ENDPROC       WIEGAND_DATA0
+  -------         PROC          WIEGAND_DATA1
+  C:01A9H         LINE#         102
+  C:01B6H         LINE#         104
+  C:01B8H         LINE#         105
+  C:01BFH         LINE#         106
+  C:01C2H         LINE#         107
+  C:01C2H         LINE#         108
+  C:01D8H         LINE#         109
+  C:01E2H         LINE#         110
+  C:01E2H         LINE#         111
+  C:01E9H         LINE#         112
+  C:01EBH         LINE#         113
+  -------         ENDPROC       WIEGAND_DATA1
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CSTOPTR
+  C:0016H         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+  -------         MODULE        ?C?UIDIV
+  C:0038H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?ILDOPTR
+  C:008DH         PUBLIC        ?C?ILDOPTR
+  -------         ENDMOD        ?C?ILDOPTR
+
+  -------         MODULE        ?C?IILDOPTR
+  C:00C5H         PUBLIC        ?C?IILDOPTR
+  -------         ENDMOD        ?C?IILDOPTR
+
+  -------         MODULE        ?C?ISTOPTR
+  C:0112H         PUBLIC        ?C?ISTOPTR
+  -------         ENDMOD        ?C?ISTOPTR
+
+  -------         MODULE        ?C?IILDX
+  C:013FH         PUBLIC        ?C?IILDX
+  -------         ENDMOD        ?C?IILDX
+
+Program Size: data=28.0 xdata=0 code=549
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/26/2022  11:36:12  PAGE 4
+
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
