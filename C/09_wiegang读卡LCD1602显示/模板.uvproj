@@ -324,7 +324,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\Core\Inc;.\Drivers\Inc</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -385,6 +385,18 @@
         </Group>
         <Group>
           <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\Src\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>wiegand.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drivers\Src\wiegand.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>

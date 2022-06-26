@@ -324,7 +324,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\Core\Inc;.\Drivers\Inc</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>

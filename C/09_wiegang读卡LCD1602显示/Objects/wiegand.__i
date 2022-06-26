@@ -1,0 +1,1 @@
+"Drivers\Src\wiegand.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\Core\Inc;.\Drivers\Inc) DEBUG OBJECTEXTEND PRINT(.\Listings\wiegand.lst) TABS (2) OBJECT(.\Objects\wiegand.obj)
