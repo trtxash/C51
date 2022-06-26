@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "S:/Keil_v5/C51/INC/**"
             ],
             "defines": [
                 "_DEBUG",

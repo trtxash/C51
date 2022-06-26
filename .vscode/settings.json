@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "main.h": "c",
+        "REGX52.H": "cpp"
     }
 }
