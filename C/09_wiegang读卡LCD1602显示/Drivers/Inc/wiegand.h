@@ -26,9 +26,9 @@
  *******************************************************************************/
 struct wiegand_dev
 {
-        char wiegand[26]; // 定义Weigand  26Bits 数据
+        unsigned char wiegand[26]; // 定义Weigand  26Bits 数据
         unsigned char state;
-        int global_var; // 全局计数器 计数组长度
+        unsigned int global_var; // 全局计数器 计数组长度
 };
 static struct wiegand_dev *rf_card;
 /*结构体，左边指针用->，左边变量用.*/
