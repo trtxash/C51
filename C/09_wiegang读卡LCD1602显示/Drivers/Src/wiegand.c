@@ -3,6 +3,8 @@
  ******************************************************************************/
 #include "wiegand.h"
 
+static uchar debug1[] = "00";
+
 /******************************************************************************
  *函数名称：initial(void)
  *函数功能：中断初始化
@@ -11,9 +13,9 @@
  ******************************************************************************/
 void initial(void)
 {
-	IT0 = 0; // Wiegand-Data0        低电平触发中断
+	IT0 = 1; // Wiegand-Data0        低电平触发中断
 	EX0 = 1; //外部中断0允许
-	IT1 = 0; // Wiegand-Data1 低电平触发中断
+	IT1 = 1; // Wiegand-Data1 低电平触发中断
 	EX1 = 1; //外部中断1允许
 	EA = 1;	 //开CPU中断
 }
@@ -38,17 +40,21 @@ void udelay(uint num) // 假如用51用12m晶振
  ******************************************************************************/
 void Wiegand_Data0() interrupt 0 using 1 //中断0处理函数,使用第一组寄存器，main函数使用0组寄存器，写好寄存器组可以省去寄存器入栈，提高速度
 {
-	EX0 = 0;		//关中断0
-	if (DATA0 == 0) //如果INT0为低，标示0线中断
-	{
+	EX0 = 0; //关中断0
+	udelay(50);
+	// if (DATA0 == 0) //如果INT0为低，标示0线中断
+	// {
 		rf_card->wiegand[rf_card->global_var] = '0'; //往数组里填0
-		rf_card->global_var++;
-		if (rf_card->global_var == 26)
+		rf_card->global_var = rf_card->global_var + 1;
+		if (rf_card->global_var >= 26)
 		{
 			rf_card->state = 1;
 		}
-	}
-	udelay(500); //延时500uS（去掉中断后的处理时间）
+	// }
+	LcdPrintf(debug1);
+	debug1[0]++;
+	debug1[2] = rf_card->global_var / 10 + 48;
+	udelay(100); //延时500uS（去掉中断后的处理时间）
 	EX0 = 1;	 //开中断0
 }
 
@@ -61,16 +67,20 @@ void Wiegand_Data0() interrupt 0 using 1 //中断0处理函数,使用第一组�
 void Wiegand_Data1() interrupt 2 using 2 //中断1处理函数,使用第二组寄存器
 {
 	EX1 = 0; //关中断1
-	if (DATA1 == 0)
-	{
+	udelay(50);
+	// if (DATA1 == 0)
+	// {
 		rf_card->wiegand[rf_card->global_var] = '1';
-		rf_card->global_var++;
-		if (rf_card->global_var == 26)
+		rf_card->global_var = rf_card->global_var + 1;
+		if (rf_card->global_var >= 26)
 		{
 			rf_card->state = 1;
 		}
-	}
-	udelay(500);
+	// }
+	LcdPrintf(debug1);
+	debug1[1]++;
+	debug1[3] = rf_card->global_var % 10 + 48;
+	udelay(100);
 	EX1 = 1; //开中断0
 }
 

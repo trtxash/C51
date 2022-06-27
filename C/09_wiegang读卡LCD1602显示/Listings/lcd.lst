@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   LCD                                                               06/26/2022 23:34:27 PAGE 1   
+C51 COMPILER V9.60.0.0   LCD                                                               06/27/2022 01:26:58 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LCD
@@ -62,7 +62,7 @@ line level    source
               
                 LCD1602_DATAPINS = com << 4; //发送低四位
                 Lcd1602_Delaynus(40);
-C51 COMPILER V9.60.0.0   LCD                                                               06/26/2022 23:34:27 PAGE 2   
+C51 COMPILER V9.60.0.0   LCD                                                               06/27/2022 01:26:58 PAGE 2   
 
               
                 LCD1602_E = 1; //写入时序
@@ -126,7 +126,7 @@ line level    source
  114   1        LcdWriteCom(0x06); //写一个指针加1
  115   1        LcdWriteCom(0x01); //清屏
  116   1        LcdWriteCom(0x80); //设置数据指针起点
-C51 COMPILER V9.60.0.0   LCD                                                               06/26/2022 23:34:27 PAGE 3   
+C51 COMPILER V9.60.0.0   LCD                                                               06/27/2022 01:26:58 PAGE 3   
 
  117   1      }
  118          #else

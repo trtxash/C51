@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              06/27/2022 00:35:02 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              06/27/2022 01:56:59 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -16,79 +16,54 @@ line level    source
    6                  练习LCD显示，读卡器的使用
    7          */
    8          #include <main.h>
-   9          #include "wiegand.h"
-  10          
-  11          ////////////////////////////////////////////////////////////////////////////////
-  12          typedef unsigned int u16;
-  13          typedef unsigned char u8;
-  14          
-  15          u8 DisplayData[27] = ""; // 记录32位字符串
-  16          
-  17          /******************************************************************************
-  18           *函数名称：main( )
-  19           *函数功能：主函数
-  20           *入口函数：无
-  21           *出口函数：无
-  22           ****************************************************************************/
-  23          void main()
-  24          {
-  25   1          initial();
-  26   1          LcdInit();
-  27   1      
-  28   1          while (1)
-  29   1          {
-  30   2              u8 i;
-  31   2              // temp = rf_card->global_var;
-  32   2              // if (temp != rf_card->global_var)
-  33   2              // {
-  34   2              //     u8 dis[] = "9934567890";
-  35   2              //     temp = rf_card->global_var / 10;
-  36   2              //     dis[0] = temp + 48;
-  37   2              //     temp = rf_card->global_var % 10;
-  38   2              //     dis[1] = temp + 48;
-  39   2              //     LcdPrintf(dis);
-  40   2              //     udelay(65536);
-  41   2              //     udelay(65536);
-  42   2              //     udelay(65536);
-  43   2              //     udelay(65536);
-  44   2              //     udelay(65536);
-  45   2              //     udelay(65536);
-  46   2              //     udelay(65536);
-  47   2              //     udelay(65536);
-  48   2              //     udelay(65536);
-  49   2              //     udelay(65536);
-  50   2              // }
-  51   2              udelay(65536);
-  52   2              udelay(65536);
-  53   2              udelay(65536);
-  54   2              udelay(65536);
-C51 COMPILER V9.60.0.0   MAIN                                                              06/27/2022 00:35:02 PAGE 2   
-
-  55   2              udelay(65536);
-  56   2              udelay(65536);
-  57   2              udelay(65536);
-  58   2              udelay(65536);
-  59   2              udelay(65536);
-  60   2              udelay(65536);
-  61   2      
-  62   2              for (i = 0; i < 26; i++)
-  63   2              {
-  64   3                  DisplayData[i] = rf_card->wiegand[i];
-  65   3              }
-  66   2              LcdPrintf(DisplayData);
-  67   2              rf_card->global_var = 0;
-  68   2          }
-  69   1      }
-  70          
-  71          // 2022年6月26号11点35分
+   9          
+  10          ////////////////////////////////////////////////////////////////////////////////
+  11          typedef unsigned int u16;
+  12          typedef unsigned char u8;
+  13          
+  14          u8 DisplayData[26] = ""; // 记录26位字符串
+  15          
+  16          /******************************************************************************
+  17           *函数名称：main( )
+  18           *函数功能：主函数
+  19           *入口函数：无
+  20           *出口函数：无
+  21           ****************************************************************************/
+  22          void main()
+  23          {
+  24   1          initial();
+  25   1          LcdInit();
+  26   1      
+  27   1          while (1)
+  28   1          {
+  29   2              // if (rf_card->state == 1)
+  30   2              // {
+  31   2              //     u8 i;
+  32   2      
+  33   2              //     rf_card->global_var = 0;
+  34   2              //     rf_card->state = 0;
+  35   2              //     for (i = 0; i < 26; i++)
+  36   2              //     {
+  37   2              //         DisplayData[i] = rf_card->wiegand[i];
+  38   2              //     }
+  39   2              //     EA = 0;
+  40   2              //     LcdPrintf(DisplayData);
+  41   2              //     EA = 1;
+  42   2              // }
+  43   2          }
+  44   1      }
+  45          
+  46          // 2022年6月26号11点35分
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    133    ----
+   CODE SIZE        =      8    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     30       1
+   DATA SIZE        =     29    ----
+C51 COMPILER V9.60.0.0   MAIN                                                              06/27/2022 01:56:59 PAGE 2   
+
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

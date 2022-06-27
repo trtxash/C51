@@ -6,13 +6,12 @@
         练习LCD显示，读卡器的使用
 */
 #include <main.h>
-#include "wiegand.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 typedef unsigned int u16;
 typedef unsigned char u8;
 
-u8 DisplayData[27] = ""; // 记录32位字符串
+u8 DisplayData[26] = ""; // 记录26位字符串
 
 /******************************************************************************
  *函数名称：main( )
@@ -27,14 +26,20 @@ void main()
 
     while (1)
     {
-        u8 i;
- 
-        for (i = 0; i < 26; i++)
-        {
-            DisplayData[i] = rf_card->wiegand[i];
-        }
-        LcdPrintf(DisplayData);
-        rf_card->global_var = 0;
+        // if (rf_card->state == 1)
+        // {
+        //     u8 i;
+
+        //     rf_card->global_var = 0;
+        //     rf_card->state = 0;
+        //     for (i = 0; i < 26; i++)
+        //     {
+        //         DisplayData[i] = rf_card->wiegand[i];
+        //     }
+        //     EA = 0;
+        //     LcdPrintf(DisplayData);
+        //     EA = 1;
+        // }
     }
 }
 
