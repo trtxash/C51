@@ -1,5 +1,0 @@
-".\Objects\main.obj",
-".\Objects\lcd.obj",
-".\Objects\wiegand.obj" 
-TO ".\Objects\Ä£°å" 
-PRINT(".\Listings\Ä£°å.m51") RAMSIZE(256) 
