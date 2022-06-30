@@ -11,7 +11,7 @@
 typedef unsigned int u16;
 typedef unsigned char u8;
 
-u8 DisplayData[26] = ""; // 记录26位字符串
+wiegand_dev wiegand_dev_t; // 定义一个结构体，用于存储韦根卡的数据
 
 /******************************************************************************
  *函数名称：main( )
@@ -19,28 +19,50 @@ u8 DisplayData[26] = ""; // 记录26位字符串
  *入口函数：无
  *出口函数：无
  ****************************************************************************/
-void main()
+void main() using 0
 {
     initial();
     LcdInit();
+    wiegand_dev_t.global_var = 0;
 
     while (1)
     {
-        // if (rf_card->state == 1)
-        // {
-        //     u8 i;
-
-        //     rf_card->global_var = 0;
-        //     rf_card->state = 0;
-        //     for (i = 0; i < 26; i++)
-        //     {
-        //         DisplayData[i] = rf_card->wiegand[i];
-        //     }
-        //     EA = 0;
-        //     LcdPrintf(DisplayData);
-        //     EA = 1;
-        // }
+        if (wiegand_dev_t.global_var == 34)
+        {
+            wiegand_dev_t.global_var = 0;
+            LcdPrintf(wiegand_dev_t.wiegand);
+        }
     }
+}
+
+/******************************************************************************
+ *函数名称：Wiegand_Data0( )
+ *函数功能：韦根卡数据0中断处理
+ *入口函数：无
+ *出口函数：无
+ ******************************************************************************/
+void Wiegand_Data0() interrupt 0 using 1 //中断0处理函数,使用第一组寄存器，main函数使用0组寄存器，写好寄存器组可以省去寄存器入栈，提高速度
+{
+    EX0 = 0;
+    wiegand_dev_t.wiegand[wiegand_dev_t.global_var] = '0';
+    wiegand_dev_t.global_var += 1;
+    udelay(100);
+    EX0 = 1;
+}
+
+/******************************************************************************
+ *函数名称：Wiegand_Data1( )
+ *函数功能：韦根卡数据1中断处理
+ *入口函数：无
+ *出口函数：无
+ ******************************************************************************/
+void Wiegand_Data1() interrupt 2 using 2 //中断1处理函数,使用第二组寄存器
+{
+    EX1 = 0;
+    wiegand_dev_t.wiegand[wiegand_dev_t.global_var] = '1';
+    wiegand_dev_t.global_var += 1;
+    udelay(100);
+    EX1 = 1;
 }
 
 // 2022年6月26号11点35分

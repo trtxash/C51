@@ -30,10 +30,10 @@ void LcdWriteCom(uchar com) //写入命令
 	LCD1602_RW = 0; //选择写入
 
 	LCD1602_DATAPINS = com; //放入命令
-	Lcd1602_Delaynus(500);	//等待数据稳定,40us差不多
+	Lcd1602_Delaynus(40);	//等待数据稳定,40us差不多
 
 	LCD1602_E = 1;		 //写入时序
-	Lcd1602_Delaynus(500); //保持时间,40us差不多
+	Lcd1602_Delaynus(40); //保持时间,40us差不多
 	LCD1602_E = 0;
 }
 #else
@@ -72,10 +72,10 @@ void LcdWriteData(uchar dat) //写入数据
 	LCD1602_RW = 0; //选择写入
 
 	LCD1602_DATAPINS = dat; //写入数据
-	Lcd1602_Delaynus(500);
+	Lcd1602_Delaynus(40);
 
 	LCD1602_E = 1;		 //写入时序
-	Lcd1602_Delaynus(500); //保持时间
+	Lcd1602_Delaynus(40); //保持时间
 	LCD1602_E = 0;
 }
 #else
