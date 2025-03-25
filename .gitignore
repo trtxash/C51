@@ -1,5 +1,8 @@
 Objects/
 Listings/
+build/
+bin/
+.cache/
 .vscode/
 
 *.11655
