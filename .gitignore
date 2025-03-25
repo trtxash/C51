@@ -1,3 +1,7 @@
 Objects/
 Listings/
 .vscode/
+
+*.11655
+*.TRTX
+*.workspace
