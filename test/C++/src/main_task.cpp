@@ -6,27 +6,10 @@
  * @date 	2025-03-16 18:43
  */
 
+#include <bitset>
 #include <iostream>
-#include <vector>
+#include <string>
 
-struct DataVectorStruct
-{
-    union DataUnion {
-        bool b;
-        char ch;
-        int i;
-        float f;
-        double d;
-    };
-
-    std::vector<bool> vec_bool;
-    std::vector<char> vec_char;
-    std::vector<int> vec_int;
-    std::vector<float> vec_float;
-    std::vector<double> vec_double;
-    std::vector<std::string> vec_string;
-    std::vector<DataUnion> vec_union;
-};
 
 template <typename Type1, typename Type2, typename Type3> bool NumberInput(Type1 &value, Type2 min, Type3 max);
 
@@ -40,26 +23,40 @@ template <typename Type1, typename Type2, typename Type3> bool NumberInput(Type1
  */
 int main()
 {
-    DataVectorStruct data_vec = {};
-
-    data_vec.vec_int.reserve(10); // 预分配足够空间，避免频繁重新分配内存，确保引用不会因vector扩容失效。
-    data_vec.vec_string.reserve(10);
-
-    data_vec.vec_int.push_back(0);
-    int &task_num = data_vec.vec_int.back(); // 重命名为任务变量，来自vector结构体的int临时变量
+    int task_num;
 
     while (1)
     {
         std::cout << "Enter task number: ";
         if (NumberInput(task_num, 1, 9))
         {
-            switch (task_num) // switch语句里不能定义变量，因分支共用变量,故定义处加大括号，定义在块内
+            switch (task_num)
             {
             case 1: {
+                // 测试原码反码补码的转换，以及加减乘除计算
+                std::cout << "Enter a number: ";
+                int num;
+                if (NumberInput(num, INT_MIN, INT_MAX))
+                {
+                    std::string bin_str, rev_bin_str, twos_comp_str;
+                    int bin_num, rev_bin_num, twos_comp_num;
+                    // 原码转换
+                    bin_num = num < 0 ? -num : num;
+                    bin_str = std::bitset<32>(bin_num).to_string();
+
+                    std::cout << "The original number is: " << num << std::endl;
+                    // std::cout << "The complement number is: " << ~num << std::endl;
+                    // std::cout << "The two's complement number is: " << (~num + 1) << std::endl;
+                    // std::cout << "The reversal number is: " << num < 0 ? -num : num << std::endl;
+                    // std::cout << "The absolute value is: " << abs(num) << std::endl;
+                    // std::cout << "The addition is: " << num + 10 << std::endl;
+                    // std::cout << "The subtraction is: " << num - 10 << std::endl;
+                    // std::cout << "The multiplication is: " << num * 10 << std::endl;
+                    // std::cout << "The division is: " << num / 10 << std::endl;
+                }
             }
             break;
             case 2: {
-                // test git 2
             }
             break;
             case 3: {
@@ -93,7 +90,6 @@ int main()
         }
     }
 
-    data_vec.vec_int.pop_back();
     return 0;
 }
 
@@ -102,9 +98,8 @@ int main()
  * @param 	value 	输入数据
  * @param 	min 	最小值
  * @param 	max 	最大值,都为0则不进行范围检查
- * @arg
+ * @arg 只能处理整数、浮点数、布尔型数据类型，其他类型需要自行定义模板函数；
  * @note
- * 只能处理整数、浮点数、布尔型数据类型，其他类型需要自行定义模板函数；
  * @retval	True    成功
  * @retval	False   失败
  */
