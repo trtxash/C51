@@ -9,7 +9,7 @@ project(
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
-set(DCMAKE_EXPORT_COMPILE_COMMANDS ON) # 开启编译建议
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # 开启编译建议
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin) # Set the output directory for the executable files
 set(User_Dir ${CMAKE_SOURCE_DIR}/src/user)
