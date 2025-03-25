@@ -26,4 +26,7 @@ del *.sct /s
 del *.map /s
 
 del *.11655 /s
+del *.TRTX /s
+del *.workspace /s
+
 exit
