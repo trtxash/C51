@@ -10,8 +10,8 @@
 #include <iostream>
 #include <string>
 
-
-template <typename Type1, typename Type2, typename Type3> bool NumberInput(Type1 &value, Type2 min, Type3 max);
+template <typename Type1, typename Type2, typename Type3>
+bool NumberInput(Type1 &value, Type2 min, Type3 max);
 
 /**
  * @brief	对函数简要描述
@@ -32,52 +32,69 @@ int main()
         {
             switch (task_num)
             {
-            case 1: {
+            case 1:
+            {
                 // 测试原码反码补码的转换，以及加减乘除计算
+                int ture_num;
                 std::cout << "Enter a number: ";
-                int num;
-                if (NumberInput(num, INT_MIN, INT_MAX))
+                if (NumberInput(ture_num, INT_MIN, INT_MAX))
                 {
-                    std::string bin_str, rev_bin_str, twos_comp_str;
-                    int bin_num, rev_bin_num, twos_comp_num;
+                    std::string ori_str, rev_str, comp_str;
+                    // int ori_num, rev_num, comp_num;
+                    std::cout << "\nTrue number: " << ture_num << std::endl;
                     // 原码转换
-                    bin_num = num < 0 ? -num : num;
-                    bin_str = std::bitset<32>(bin_num).to_string();
+                    if (ture_num >= 0)
+                    {
+                        ori_str = std::bitset<32>(ture_num).to_string();
+                        rev_str = ori_str;
+                        comp_str = ori_str;
+                    }
+                    else
+                    {
+                        std::cout << "direct output: " << std::endl;
+                        ori_str = std::bitset<32>(ture_num).to_string();       // 得到的是ture_num的补码，因为计算机中实际存储的是补码形式
+                        rev_str = std::bitset<32>(~ture_num).to_string();      //
+                        comp_str = std::bitset<32>(~ture_num + 1).to_string(); // 一个负数的补数=模-该数
+                        std::cout << "Original code: " << ori_str << std::endl;
+                        std::cout << "Reverse code: " << rev_str << std::endl;
+                        std::cout << "Complement code: " << comp_str << "\n"
+                                  << std::endl;
 
-                    std::cout << "The original number is: " << num << std::endl;
-                    // std::cout << "The complement number is: " << ~num << std::endl;
-                    // std::cout << "The two's complement number is: " << (~num + 1) << std::endl;
-                    // std::cout << "The reversal number is: " << num < 0 ? -num : num << std::endl;
-                    // std::cout << "The absolute value is: " << abs(num) << std::endl;
-                    // std::cout << "The addition is: " << num + 10 << std::endl;
-                    // std::cout << "The subtraction is: " << num - 10 << std::endl;
-                    // std::cout << "The multiplication is: " << num * 10 << std::endl;
-                    // std::cout << "The division is: " << num / 10 << std::endl;
+                        std::cout << "because of the direct output, the original code is the complement code" << std::endl;
+                    }
                 }
             }
             break;
-            case 2: {
+            case 2:
+            {
             }
             break;
-            case 3: {
+            case 3:
+            {
             }
             break;
-            case 4: {
+            case 4:
+            {
             }
             break;
-            case 5: {
+            case 5:
+            {
             }
             break;
-            case 6: {
+            case 6:
+            {
             }
             break;
-            case 7: {
+            case 7:
+            {
             }
             break;
-            case 8: {
+            case 8:
+            {
             }
             break;
-            case 9: {
+            case 9:
+            {
             }
             break;
             default:
@@ -103,7 +120,8 @@ int main()
  * @retval	True    成功
  * @retval	False   失败
  */
-template <typename Type1, typename Type2, typename Type3> bool NumberInput(Type1 &value, Type2 min, Type3 max)
+template <typename Type1, typename Type2, typename Type3>
+bool NumberInput(Type1 &value, Type2 min, Type3 max)
 {
     // 处理类型错误...
     if (!(std::cin >> value))
